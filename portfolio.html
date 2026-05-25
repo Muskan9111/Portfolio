@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muskan Sharma | Cyber Portfolio</title>
+    <style>
+        /* --- GLOBAL TECH THEMING --- */
+        :root {
+            --primary-bg: #0a192f;
+            --card-bg: rgba(16, 28, 48, 0.7);
+            --neon-blue: #64ffda;
+            --text-main: #e6f1ff;
+            --text-muted: #8892b0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--primary-bg);
+            color: var(--text-main);
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding-top: 80px;
+        }
+
+        /* 🌌 BACKGROUND CANVAS FOR TECH PARTICLES */
+        #particles-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at 50% 50%, #112240 0%, #0a192f 100%);
+        }
+
+        /* --- FIXED NEON NAVBAR --- */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(10, 25, 47, 0.85);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            padding: 18px 0;
+            border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+        }
+
+        .navbar a {
+            color: var(--text-main);
+            margin: 0 20px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .navbar a:hover {
+            color: var(--neon-blue);
+            text-shadow: 0 0 8px var(--neon-blue);
+        }
+
+        /* --- CONTAINER WITH ENTRANCE TRANSITION --- */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+            opacity: 0;
+            transform: scale(0.95) translateY(20px);
+            animation: webIntro 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+        }
+
+        @keyframes webIntro {
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        /* --- GLASSMORPHISM HEADER --- */
+        header {
+            background: var(--card-bg);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            border-radius: 16px;
+            margin-bottom: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+        }
+
+        header h1 {
+            font-size: 3.2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: white;
+            margin-bottom: 10px;
+        }
+        
+        .typing-text {
+            font-size: 1.4rem;
+            color: var(--neon-blue);
+            font-weight: bold;
+            margin-bottom: 25px;
+            min-height: 35px;
+            text-shadow: 0 0 10px rgba(100, 255, 218, 0.3);
+        }
+        
+        .contact-info {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+
+        .contact-info a {
+            color: var(--text-main);
+            font-weight: bold;
+            margin: 0 10px;
+            text-decoration: none;
+            border-bottom: 1px dashed var(--neon-blue);
+        }
+
+        .contact-info a:hover {
+            color: var(--neon-blue);
+            border-bottom-style: solid;
+        }
+
+        /* --- SCROLL REVEAL SECTIONS --- */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        section {
+            background: var(--card-bg);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 35px;
+            margin-bottom: 35px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border-left: 4px solid var(--neon-blue);
+            transition: transform 0.3s ease, border-left-width 0.3s ease;
+        }
+
+        section:hover {
+            transform: translateY(-5px);
+            border-left-width: 8px;
+        }
+
+        h2 {
+            color: var(--neon-blue);
+            font-size: 1.6rem;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+            padding-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        /* --- EDUCATION & TABLES --- */
+        .edu-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .edu-table td {
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            vertical-align: top;
+        }
+
+        .edu-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .edu-year {
+            text-align: right;
+            font-weight: bold;
+            color: var(--neon-blue);
+            width: 150px;
+        }
+
+        .edu-degree {
+            font-weight: bold;
+            color: var(--text-main);
+            font-size: 1.1rem;
+        }
+
+        /* --- SKILLS CARDS GRID --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-category {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-3px);
+            background: rgba(100, 255, 218, 0.03);
+            border-color: var(--neon-blue);
+        }
+
+        .skill-category strong {
+            color: var(--neon-blue);
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        /* --- PROJECTS CARDS --- */
+        .project-card {
+            background: rgba(255, 255, 255, 0.02);
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .project-card:hover {
+            border-color: var(--neon-blue);
+            background: rgba(100, 255, 218, 0.02);
+        }
+
+        .project-title {
+            font-size: 1.35rem;
+            font-weight: bold;
+            color: var(--text-main);
+            margin-bottom: 12px;
+        }
+
+        .project-tech {
+            color: var(--neon-blue);
+            font-size: 0.9rem;
+            font-weight: normal;
+            float: right;
+        }
+
+        .star-layout {
+            list-style: none;
+        }
+
+        .star-layout li {
+            margin-bottom: 10px;
+            color: var(--text-muted);
+        }
+
+        .star-layout strong {
+            color: var(--text-main);
+        }
+
+        .styled-list {
+            padding-left: 20px;
+            color: var(--text-muted);
+        }
+
+        .styled-list li {
+            margin-bottom: 12px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 50px;
+        }
+
+        @media (max-width: 768px) {
+            .navbar { flex-wrap: wrap; padding: 10px 0; }
+            .navbar a { margin: 5px 12px; font-size: 0.8rem; }
+            body { padding-top: 110px; }
+            header h1 { font-size: 2.2rem; }
+            .edu-table td { display: block; width: 100%; }
+            .edu-year { text-align: left; margin-bottom: 15px; }
+            .project-tech { float: none; display: block; margin-top: 5px; }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="particles-canvas"></canvas>
+
+    <nav class="navbar">
+        <a href="#objective">About</a>
+        <a href="#education">Education</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#certifications">Certifications</a>
+    </nav>
+
+    <div class="container">
+        <header>
+            <h1>Muskan Sharma</h1>
+            <div class="typing-text" id="typing-effect"></div>
+            
+            <div class="contact-info">
+                <span>📍 Bhopal, Madhya Pradesh</span> | 
+                <span>✉️ <a href="mailto:muskansharma7122@gmail.com">muskansharma7122@gmail.com</a></span> | 
+                <span>📞 +91 6263522157</span>
+            </div>
+            <div class="contact-info">
+                <a href="https://www.linkedin.com/in/muskan-sharma-581bb0285" target="_blank">🔗 LinkedIn Profile</a> | 
+                <a href="https://github.com/Muskan9111" target="_blank">🔗 GitHub Profile</a>
+            </div>
+        </header>
+
+        <section id="objective" class="reveal">
+            <h2>Career Objective</h2>
+          <p>Motivated MCA student with strong knowledge of Python, Web Development, and Database Management.Passionate about building user-friendly applications and solving real-world problems through technology.Seeking an opportunity in a reputed organization to apply technical and problem-solving skills while learning and growing professionally.</p>
+        </section>
+
+        <section id="education" class="reveal">
+            <h2>Education</h2>
+            <table class="edu-table">
+                <tr>
+                    <td><span class="edu-degree">MCA</span><br><span style="color: var(--text-muted);">Lakshmi Narayan College of Technology, Bhopal</span></td>
+                    <td class="edu-year">2027</td>
+                </tr>
+                <tr>
+                    <td><span class="edu-degree">BCA (7.29 CGPA)</span><br><span style="color: var(--text-muted);">Makhanlal Chaturvedi University, Bhopal</span></td>
+                    <td class="edu-year">2025</td>
+                </tr>
+                <tr>
+                <td><span class="edu-degree">Class 12th (82.6%)</span><br><span style="color: var(--text-muted);">Maharashtra English Medium High School, Jabalpur</span></td>
+                    <td class="edu-year">2022</td>
+                </tr>
+                <tr>
+                   <td><span class="edu-degree">Class 10th (81.4%)</span><br><span style="color: var(--text-muted);">Maharashtra English Medium High School, Jabalpur</span></td>
+                    <td class="edu-year">2020</td>
+                </tr>
+            </table>
+        </section>
+
+        <section id="skills" class="reveal">
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <strong>Programming Languages:</strong> C, Python, Java (Basic)
+                </div>
+                <div class="skill-category">
+                    <strong>Web Technologies:</strong> HTML, CSS, JavaScript
+                </div>
+                <div class="skill-category">
+                    <strong>Frameworks / Libraries:</strong> Bootstrap, React.js
+                </div>
+                <div class="skill-category">
+                    <strong>Database & Tools:</strong> MySQL, VS Code, GitHub
+                </div>
+                <div class="skill-category">
+                    <strong>Core Concepts:</strong> DBMS, OOPs, Data Structures and Algorithms (DSA)
+                </div>
+                <div class="skill-category">
+                    <strong>Soft Skills:</strong> Problem Solving, Communication, Teamwork, Time Management
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="reveal">
+            <h2>Projects</h2>
+            
+            <div class="project-card">
+                <div class="project-title">Resume Analyzer <span class="project-tech">[HTML, CSS, JavaScript]</span></div>
+                <ul class="star-layout">
+                    <li><strong>Task:</strong> Developed an automated web-based tool to screen and analyze resumes against job descriptions.</li>
+                  <li><strong>Action:</strong> Implemented keyword matching algorithms and built an ATS-style scoring system with missing skill suggestions.</li>
+                    <li><strong>Result:</strong> Created a highly intuitive and responsive UI that provides real-time feedback for job applicants.</li>
+                </ul>
+            </div>
+
+            <div class="project-card">
+                <div class="project-title">Smart Study Planner <span class="project-tech">[HTML, CSS, JavaScript]</span></div>
+                <ul class="star-layout">
+                    <li><strong>Task:</strong> Created a dynamic scheduling application to help students optimize their study routines.</li>
+                   <li><strong>Action:</strong> Designed and integrated a weighted distribution logic for custom timetable generation and used Local Storage for data persistence.</li>
+                  <li><strong>Result:</strong> Delivered a cross-device accessible application ensuring seamless tracking of academic schedules.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="certifications" class="reveal">
+            <h2>Certifications & Achievements</h2>
+            <ul class="styled-list">
+                <li>Cisco Modern AI & Data Analyst Certification</li>
+                <li>Python Programming Certification</li>
+                <li>C Programming & Web Development Certifications</li>
+
+            </ul>
+        </section>
+
+         <section id="certifications" class="reveal">
+            <h2>Hobbies</h2>
+            <ul class="styled-list">
+                <li>Open Source Contribution</li>
+                <li>Tech Reading</li>
+                <li>Competitive Programming</li>
+
+            </ul>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Muskan Sharma. Implemented with Interactive Particle Engine.</p>
+    </footer>
+
+    <script>
+        // --- 1. DYNAMIC PARTICLES ENGINE ---
+        const canvas = document.getElementById('particles-canvas');
+        const ctx = canvas.getContext('2d');
+        let particlesArray = [];
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+
+                if (this.x > canvas.width || this.x < 0) this.speedX = -this.speedX;
+                if (this.y > canvas.height || this.y < 0) this.speedY = -this.speedY;
+            }
+            draw() {
+                ctx.fillStyle = 'rgba(100, 255, 218, 0.3)';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particlesArray = [];
+            let numberOfParticles = (canvas.width * canvas.height) / 9000;
+            for (let i = 0; i < numberOfParticles; i++) {
+                particlesArray.push(new Particle());
+            }
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+                particlesArray[i].draw();
+            }
+            connectParticles();
+            requestAnimationFrame(animateParticles);
+        }
+
+        function connectParticles() {
+            for (let a = 0; a < particlesArray.length; a++) {
+                for (let b = a; b < particlesArray.length; b++) {
+                    let distance = ((particlesArray[a].x - particlesArray[b].x) ** 2) + ((particlesArray[a].y - particlesArray[b].y) ** 2);
+                    if (distance < (canvas.width / 10) * (canvas.height / 10)) {
+                        ctx.strokeStyle = `rgba(100, 255, 218, ${1 - distance/12000})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.beginPath();
+                        ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+                        ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+        }
+
+        initParticles();
+        animateParticles();
+
+        // --- 2. TYPING EFFECT ---
+        const words = ["MCA Student", "Web Developer", "Python Programmer", "Tech Enthusiast"];
+        let wordIndex = 0;
+        let timer;
+
+        function typingEffect() {
+            let word = words[wordIndex].split("");
+            var loopTyping = function() {
+                if (word.length > 0) {
+                    document.getElementById('typing-effect').innerHTML += word.shift();
+                } else {
+                    setTimeout(deletingEffect, 2000);
+                    return false;
+                }
+                timer = setTimeout(loopTyping, 100);
+            };
+            loopTyping();
+        }
+
+        function deletingEffect() {
+            let word = words[wordIndex].split("");
+            var loopDeleting = function() {
+                if (word.length > 0) {
+                    word.pop();
+                    document.getElementById('typing-effect').innerHTML = word.join("");
+                } else {
+                    wordIndex = (wordIndex + 1) % words.length;
+                    setTimeout(typingEffect, 500);
+                    return false;
+                }
+                timer = setTimeout(loopDeleting, 50);
+            };
+            loopDeleting();
+        }
+
+        // --- 3. SCROLL REVEAL ---
+        function revealSections() {
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(reveal => {
+                const revealTop = reveal.getBoundingClientRect().top;
+                if (revealTop < window.innerHeight - 100) {
+                    reveal.classList.add('active');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', revealSections);
+        window.onload = function() {
+            typingEffect();
+            revealSections();
+        };
+    </script>
+</body>
+</html>
